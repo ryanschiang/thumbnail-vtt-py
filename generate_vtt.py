@@ -8,6 +8,14 @@ def generate_vtt_file(input_folder, output_file):
         f.write("WEBVTT\n\n")
         width, height = 178, 100
         for i, filename in enumerate(sorted(os.listdir(input_folder))):
+            if os.path.splitext(filename)[1].lower() not in (
+                ".jpg",
+                ".jpeg",
+                ".png",
+                ".gif",
+                ".bmp",
+            ):
+                continue
             if i == 0:
                 with Image.open(os.path.join(input_folder, filename)) as img:
                     width, height = img.size
